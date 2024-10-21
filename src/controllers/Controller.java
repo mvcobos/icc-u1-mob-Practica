@@ -11,7 +11,11 @@ public class Controller {
     private Person[] personas;
 
     public Controller(View view, SortingMethods sortingMethods, SearchMethods searchMethods){
-
+        //This es la instancia de la clase en la propia clase = controller.view = view;
+        this.view = view;
+        this.sortingMethods = sortingMethods;
+        this.searchMethods = searchMethods; //Si el nombre fuese diferente, no iria el this view = vista; 
+        System.out.println("Controller created");
     }
     
 }
