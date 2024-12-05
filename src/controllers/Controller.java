@@ -51,20 +51,46 @@ public class Controller {
     }
 
     private void addPerson() {
-        if (people == null) {
-            view.showMessage("Primero debe ingresar personas.");
-            inputPeople();
-            return;
+        searchMethods.setSortedByAge(false);
+        searchMethods.setSortedByName(false);
+        if (persons == null){
+            view.showMessage("No existe el arreglo, ingrese las personas por primera vez");
+            inputPersons();
+        } else {
+            int numeroPersonas = view.inputInt("Ingrese el numero de persona a adicionar: ");
+        
+        Person[] personsTemp = new Person[persons.length + numeroPersonas];
+
+        for (int i = 0; i < persons.length; i++){
+            personsTemp[i] = persons[i];
         }
-        int newCount = view.inputInt("Ingrese cuántas personas desea agregar: ");
-        Person[] newPeople = new Person[people.length + newCount];
-        System.arraycopy(people, 0, newPeople, 0, people.length);
-        for (int i = people.length; i < newPeople.length; i++) {
-            newPeople[i] = view.inputPerson();
+
+        for (int i = persons.length; i < personsTemp.length; i++){
+            personsTemp[i] = view.inputPerson();
         }
-        people = newPeople;
+        }
     }
 
+    public static int hasNextInt(Scanner leer, String mensaje, boolean permitirNegativos){
+            
+        int arrayLength = 0;
+
+        do{
+            System.out.print(mensaje);
+            while (!leer.hasNextInt()) {
+                System.out.println("Ingrese un entero  positivo valido");
+                System.out.print(mensaje);
+                leer.next();
+            }
+            arrayLength = leer.nextInt();
+            if (!permitirNegativos && arrayLength < 0){
+                System.out.println("Opcion incorrecta");
+            }
+        } while(! permitirNegativos && arrayLength < 0);
+        return arrayLength;
+    
+    }
+    
     private void sortPeople() {
         if (people == null || people.length == 0) {
             view.showMessage("No hay personas para ordenar.");
