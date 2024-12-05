@@ -9,14 +9,14 @@ public class Controller {
     private SortingMethods sortingMethods;
     private SearchMethods searchMethods;
 
-    public Controller(View view) {
+    public Controller(View view, SortingMethods sortingMethods, SearchMethods searchMethods){
         this.view = view;
-        this.sortingMethods = new SortingMethods();
-        this.searchMethods = new SearchMethods();
+        this.sortingMethods = sortingMethods;
+        this.searchMethods = searchMethods;
     }
 
     public void start() {
-        int option;
+        int option = 0;
         do {
             option = view.showMenu();
             switch (option) {
@@ -30,7 +30,11 @@ public class Controller {
                     sortPeople();
                     break;
                 case 4:
-                    searchPerson();
+                    int resultado = searchPerson();
+                    view.displaySearchResult(people, resultado);
+                    break;
+                case 5:
+                    view.displayPeople(people);
                     break;
                 default:
                     view.showMessage("Opción no válida.");
