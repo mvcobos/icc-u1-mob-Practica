@@ -13,9 +13,11 @@ public class View {
         System.out.println("*****MENU******");
         System.out.println("1. Ingresar personas");
         System.out.println("2. Adicionar personas");
+        System.out.println("3. Ordenar personas");
+        System.out.println("4. Buscar persona");
+        System.out.print("Seleccione una opción: ");
         System.out.println("100. Salir");
         return scanner.nextInt();
-
     }
 
     public int inputInt(String message){
@@ -24,29 +26,55 @@ public class View {
     }
 
     public Person inputPerson(){
-        String name = inputName();
-        int age = inputAge();
+        System.out.print("Ingrese nombre: ");
+        String name = scanner.next();
+        System.out.print("Ingrese edad: ");
+        int age = scanner.nextInt();
         return new Person(name, age);
     }
-    
-    public String inputName(){
-        System.out.println("Ingrese el nombre: ");
+
+    public String inputString(String message) {
+        System.out.print(message);
         return scanner.next();
     }
-
-    public int inputAge(){
-        return inputInt("Ingrese la edad: ");
-    }
-
+    
     public void showMessage(String message){
         System.out.println(message);
     }
 
+    public int selectSearchCriterion() {
+        System.out.println("Criterios de búsqueda:");
+        System.out.println("1) Por edad");
+        System.out.println("2) Por nombre");
+        System.out.print("Seleccione una opción: ");
+        return scanner.nextInt();
+    }
+
+    public void displayPeople(Person[] persons) {
+        if (persons == null || persons.length == 0) {
+            System.out.println("No hay personas registradas.");
+            return;
+        }
+        for (Person person : persons) {
+            System.out.println(person);
+        }
+    }
+
+    public void displaySearchResult(Person person) {
+        if (person == null) {
+            System.out.println("Persona no encontrada.");
+        } else {
+            System.out.println("Resultado de búsqueda: " + person);
+        }
+    }
+    
     public int selectSortingMethod() {
-        System.out.println("*****Ingrese la condicion a ordenar******");
-        System.out.println("1. Por nombre");
-        System.out.println("2. Por edad");
-        System.out.println("Ingrese una opcion");
+        System.out.println("Métodos de ordenamiento:");
+        System.out.println("1. Burbuja por nombre");
+        System.out.println("2. Selección descendente por nombre");
+        System.out.println("3. Inserción por edad");
+        System.out.println("4. Inserción por nombre");
+        System.out.print("Seleccione una opción: ");
         return scanner.nextInt();
     }
 }
