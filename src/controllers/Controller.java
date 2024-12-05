@@ -1,5 +1,5 @@
 package controllers;
-
+import java.util.Scanner;
 import models.Person;
 import views.View;
 
@@ -51,28 +51,21 @@ public class Controller {
     }
 
     private void addPerson() {
-        searchMethods.setSortedByAge(false);
-        searchMethods.setSortedByName(false);
-        if (persons == null){
-            view.showMessage("No existe el arreglo, ingrese las personas por primera vez");
-            inputPersons();
-        } else {
-            int numeroPersonas = view.inputInt("Ingrese el numero de persona a adicionar: ");
-        
-        Person[] personsTemp = new Person[persons.length + numeroPersonas];
-
-        for (int i = 0; i < persons.length; i++){
-            personsTemp[i] = persons[i];
+        if (people == null) {
+            view.showMessage("Primero debe ingresar personas.");
+            inputPeople();
+            return;
         }
-
-        for (int i = persons.length; i < personsTemp.length; i++){
-            personsTemp[i] = view.inputPerson();
+        int newCount = view.inputInt("Ingrese cuántas personas desea agregar: ");
+        Person[] newpeople = new Person[people.length + newCount];
+        System.arraycopy(people, 0, newpeople, 0, people.length);
+        for (int i = people.length; i < newpeople.length; i++) {
+            newpeople[i] = view.inputPerson();
         }
-        }
+        people = newpeople;
     }
 
     public static int hasNextInt(Scanner leer, String mensaje, boolean permitirNegativos){
-            
         int arrayLength = 0;
 
         do{
@@ -116,25 +109,32 @@ public class Controller {
         view.displayPeople(people);
     }
 
-    private void searchPerson() {
-        if (people == null || people.length == 0) {
-            view.showMessage("No hay personas para buscar.");
-            return;
-        }
+    private int searchPerson() {
         int searchOption = view.selectSearchCriterion();
-        switch (searchOption) {
-            case 1:
-                int age = view.inputInt("Ingrese la edad a buscar: ");
-                Person resultByAge = searchMethods.binarySearchByAge(people, age);
-                view.displaySearchResult(resultByAge);
+        int resultado = -2;
+            switch (searchOption) {
+                case 1:
+                if (searchMethods.isSortedByName()){
+                    String name = view.inputName();
+                    resultado = searchMethods.binarySearchByName(people, name);
+                } else {
+                    view.showMessage("No se puede buscar en el arreglo si no esta ordenado por nombre :/");
+                }
                 break;
-            case 2:
-                String name = view.inputString("Ingrese el nombre a buscar: ");
-                Person resultByName = searchMethods.binarySearchByName(people, name);
-                view.displaySearchResult(resultByName);
-                break;
-            default:
-                view.showMessage("Criterio de búsqueda inválido.");
-        }
+            
+                case 2:
+                if (searchMethods.isSortedByAge()){
+                    int age = view.inputAge();
+                    resultado = searchMethods.binarySearchByAge(people, age);
+                } else {
+                    view.showMessage("No se puede buscar en el arreglo si no esta ordenado por edad :/");
+                }
+                    break;
+
+                default:
+                    view.showMessage("Opcion no valida :/");
+                    break;
+            }
+        return resultado;
     }
 }
