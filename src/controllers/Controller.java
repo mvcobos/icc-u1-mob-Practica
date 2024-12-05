@@ -113,7 +113,7 @@ public class Controller {
         int searchOption = view.selectSearchCriterion();
         int resultado = -2;
             switch (searchOption) {
-                case 1:
+                case 2:
                 if (searchMethods.isSortedByName()){
                     String name = view.inputName();
                     resultado = searchMethods.binarySearchByName(people, name);
@@ -122,7 +122,7 @@ public class Controller {
                 }
                 break;
             
-                case 2:
+                case 1:
                 if (searchMethods.isSortedByAge()){
                     int age = view.inputAge();
                     resultado = searchMethods.binarySearchByAge(people, age);
