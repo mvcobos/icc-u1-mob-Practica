@@ -18,13 +18,9 @@ public class View {
         System.out.println("5. Desplegar Personas");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
-        return controller.Controller.hasNextInt(scanner, "Escoja una opcion: ", false);
+        return controllers.Controller.hasNextInt(scanner, "Escoja una opcion: ", false);
     }
     
-    public int inputInt(String message) {
-        System.out.println(message);
-        return scanner.nextInt();
-    }
    
     public Person inputPerson() {
         String name = inputName();
@@ -38,11 +34,16 @@ public class View {
     }
 
    public int inputAge(){
-        return controller.Controller.hasNextInt(scanner, "Ingrese la edad: ", false);
+        return controllers.Controller.hasNextInt(scanner, "Ingrese la edad: ", false);
+    }
+
+    public String inputString(String message) {
+        System.out.print(message);
+        return scanner.next();
     }
 
    public int inputInt(String mensaje){
-        return controller.Controller.hasNextIntn(scanner, mensaje, false);
+        return controllers.Controller.hasNextInt(scanner, mensaje, false);
     }
     
     public void showMessage(String message) {
@@ -89,7 +90,7 @@ public class View {
         System.out.println("2. Selección descendente por nombre");
         System.out.println("3. Inserción por edad");
         System.out.println("4. Inserción por nombre");
-        return controller.Controller.hasNextInt(scanner, "Seleccione una opción: ", false);
+        return controllers.Controller.hasNextInt(scanner, "Seleccione una opción: ", false);
     }
 
 }
