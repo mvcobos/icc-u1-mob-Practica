@@ -24,7 +24,17 @@ public class View {
         System.out.println(message);
         return scanner.nextInt();
     }
-    
+
+   public void displayPeople(Person[] people){
+        if (people == null){
+            System.out.println("El arreglo de personas esta vacio, ingrese personas");
+        } else {
+            for(Person person : people){
+                System.out.println("Nombre: " + person.getName() + "  Edad: " + person.getAge());
+            }
+        }
+    }
+   
     public Person inputPerson() {
         System.out.print("Ingrese nombre: ");
         String name = scanner.next();
