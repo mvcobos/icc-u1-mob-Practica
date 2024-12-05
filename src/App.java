@@ -13,6 +13,6 @@ public class App {
 
         //Crear el controlador
         Controller controller = new Controller(view, sortingMethods, searchMethods);
-        controlador.start();
+        controller.start();
     }
 }
