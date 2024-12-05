@@ -1,9 +1,7 @@
 package controllers;
-
 import models.Person;
 
 public class SortingMethods {
-
     public void sortByNameWithBubble(Person[] people) {
         for (int i = 0; i < people.length - 1; i++) {
             for (int j = 0; j < people.length - i - 1; j++) {
@@ -53,5 +51,4 @@ public class SortingMethods {
             people[j + 1] = key;
         }
     }
-
 }
