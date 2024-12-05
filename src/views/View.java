@@ -15,37 +15,34 @@ public class View {
         System.out.println("2. Adicionar personas");
         System.out.println("3. Ordenar personas");
         System.out.println("4. Buscar persona");
+        System.out.println("5. Desplegar Personas");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
-        return scanner.nextInt();
+        return controller.Controller.hasNextInt(scanner, "Escoja una opcion: ", false);
     }
     
     public int inputInt(String message) {
         System.out.println(message);
         return scanner.nextInt();
     }
-
-   public void displayPeople(Person[] people){
-        if (people == null){
-            System.out.println("El arreglo de personas esta vacio, ingrese personas");
-        } else {
-            for(Person person : people){
-                System.out.println("Nombre: " + person.getName() + "  Edad: " + person.getAge());
-            }
-        }
-    }
    
     public Person inputPerson() {
-        System.out.print("Ingrese nombre: ");
-        String name = scanner.next();
-        System.out.print("Ingrese edad: ");
-        int age = scanner.nextInt();
+        String name = inputName();
+        int age = inputAge();
         return new Person(name, age);
     }
-    
-    public String inputString(String message) {
-        System.out.print(message);
+   
+    public String inputName(){
+        System.out.println("Ingrese el nombre: ");
         return scanner.next();
+    }
+
+   public int inputAge(){
+        return controller.Controller.hasNextInt(scanner, "Ingrese la edad: ", false);
+    }
+
+   public int inputInt(String mensaje){
+        return controller.Controller.hasNextIntn(scanner, mensaje, false);
     }
     
     public void showMessage(String message) {
@@ -64,18 +61,26 @@ public class View {
         if (people == null || people.length == 0) {
             System.out.println("No hay personas registradas.");
             return;
-        }
-        for (Person person : people) {
-            System.out.println(person);
+        }else {
+            for(Person person : people){
+                System.out.println("Nombre: " + person.getName() + "  Edad: " + person.getAge());
+            }
         }
     }
     
-    public void displaySearchResult(Person person) {
-        if (person == null) {
-            System.out.println("Persona no encontrada.");
+    public void displaySearchResult(Person[] persons, int resultado){
+        if (resultado == -1){
+            System.out.println("No se encuentra");
+        } else if (resultado == -2){
+            System.out.println("");
         } else {
-            System.out.println("Resultado de búsqueda: " + person);
+            printObjeto(persons, resultado);
         }
+    }
+   
+    public void printObjeto(Person[] people ,int resultado){
+        System.out.println("El dato buscado corresponde a:");
+        System.out.println("Nombre: " + people[resultado].getName() + "  Edad: " + people[resultado].getAge());
     }
     
     public int selectSortingMethod() {
@@ -84,9 +89,7 @@ public class View {
         System.out.println("2. Selección descendente por nombre");
         System.out.println("3. Inserción por edad");
         System.out.println("4. Inserción por nombre");
-        System.out.print("Seleccione una opción: ");
-        return scanner.nextInt();
+        return controller.Controller.hasNextInt(scanner, "Seleccione una opción: ", false);
     }
 
-    
 }
