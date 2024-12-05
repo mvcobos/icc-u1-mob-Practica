@@ -118,7 +118,7 @@ public class Controller {
                     String name = view.inputName();
                     resultado = searchMethods.binarySearchByName(people, name);
                 } else {
-                    view.showMessage("No se puede buscar en el arreglo si no esta ordenado por nombre :/");
+                    view.showMessage("No se puede buscar en el arreglo si no esta ordenado por nombre");
                 }
                 break;
             
@@ -127,12 +127,12 @@ public class Controller {
                     int age = view.inputAge();
                     resultado = searchMethods.binarySearchByAge(people, age);
                 } else {
-                    view.showMessage("No se puede buscar en el arreglo si no esta ordenado por edad :/");
+                    view.showMessage("No se puede buscar en el arreglo si no esta ordenado por edad");
                 }
                     break;
 
                 default:
-                    view.showMessage("Opcion no valida :/");
+                    view.showMessage("Opcion no valida");
                     break;
             }
         return resultado;
