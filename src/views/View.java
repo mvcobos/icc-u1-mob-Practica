@@ -15,8 +15,8 @@ public class View {
         System.out.println("2. Adicionar personas");
         System.out.println("3. Ordenar personas");
         System.out.println("4. Buscar persona");
+        System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
-        System.out.println("100. Salir");
         return scanner.nextInt();
     }
 
