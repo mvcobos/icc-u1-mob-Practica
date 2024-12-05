@@ -1,6 +1,8 @@
 package controllers;
 
 public class SearchMethods {
+    private boolean sortedByAge = false;
+    private boolean sortedByName = false;
 
     public Person binarySearchByAge(Person[] persons, int age) {
         int left = 0, right = persons.length - 1;
@@ -33,6 +35,25 @@ public class SearchMethods {
             }
         }
         return null;
+    }
+
+    public boolean isSortedByAge() {
+        return sortedByAge;
+    }
+
+
+    public void setSortedByAge(boolean sortedByAge) {
+        this.sortedByAge = sortedByAge;
+    }
+
+
+    public boolean isSortedByName() {
+        return sortedByName;
+    }
+
+
+    public void setSortedByName(boolean sortedByName) {
+        this.sortedByName = sortedByName;
     }
   
 }
