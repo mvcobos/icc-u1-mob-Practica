@@ -3,13 +3,13 @@ import java.util.Scanner;
 import models.Person;
 
 public class View {
-    private Scanner scanner;
+   private Scanner scanner;
 
-    public View(){
+    public View() {
         scanner = new Scanner(System.in);
     }
-
-    public int showMenu(){
+    
+    public int showMenu() {
         System.out.println("*****MENU******");
         System.out.println("1. Ingresar personas");
         System.out.println("2. Adicionar personas");
@@ -19,29 +19,29 @@ public class View {
         System.out.print("Seleccione una opción: ");
         return scanner.nextInt();
     }
-
-    public int inputInt(String message){
+    
+    public int inputInt(String message) {
         System.out.println(message);
         return scanner.nextInt();
     }
-
-    public Person inputPerson(){
+    
+    public Person inputPerson() {
         System.out.print("Ingrese nombre: ");
         String name = scanner.next();
         System.out.print("Ingrese edad: ");
         int age = scanner.nextInt();
         return new Person(name, age);
     }
-
+    
     public String inputString(String message) {
         System.out.print(message);
         return scanner.next();
     }
     
-    public void showMessage(String message){
+    public void showMessage(String message) {
         System.out.println(message);
     }
-
+    
     public int selectSearchCriterion() {
         System.out.println("Criterios de búsqueda:");
         System.out.println("1) Por edad");
@@ -49,17 +49,17 @@ public class View {
         System.out.print("Seleccione una opción: ");
         return scanner.nextInt();
     }
-
-    public void displayPeople(Person[] persons) {
-        if (persons == null || persons.length == 0) {
+    
+    public void displayPeople(Person[] people) {
+        if (people == null || people.length == 0) {
             System.out.println("No hay personas registradas.");
             return;
         }
-        for (Person person : persons) {
+        for (Person person : people) {
             System.out.println(person);
         }
     }
-
+    
     public void displaySearchResult(Person person) {
         if (person == null) {
             System.out.println("Persona no encontrada.");
@@ -77,4 +77,6 @@ public class View {
         System.out.print("Seleccione una opción: ");
         return scanner.nextInt();
     }
+
+    
 }
